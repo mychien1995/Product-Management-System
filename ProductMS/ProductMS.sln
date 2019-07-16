@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductMS.Api", "ProductMS.Api\ProductMS.Api.csproj", "{6148E1EB-4BC5-4438-8C43-E8F4E97DAB82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductMS.DataAccess", "ProductMS.DataAccess\ProductMS.DataAccess.csproj", "{829F0B79-5EDE-4467-BDAD-63919C6FD6DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductMS.DataAccess.SqlServer", "ProductMS.DataAccess\ProductMS.DataAccess.SqlServer.csproj", "{829F0B79-5EDE-4467-BDAD-63919C6FD6DE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductMS.Models", "ProductMS.Models\ProductMS.Models.csproj", "{637F9FE2-D26E-44FF-B119-3F0657591EE4}"
 EndProject

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProductMS.DataAccess.Migrations
+namespace ProductMS.DataAccess.SqlServer.Migrations
 {
     public partial class _01 : Migration
     {

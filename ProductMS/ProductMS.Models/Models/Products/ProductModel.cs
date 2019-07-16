@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProductMS.Models
+namespace ProductMS.Models.Products
 {
     public class ProductModel
     {

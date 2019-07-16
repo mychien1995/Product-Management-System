@@ -1,12 +1,14 @@
-﻿using System;
+﻿using ProductMS.Models.Interfaces;
+using ProductMS.Models.Products;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace ProductMS.DataAccess.Entities
+namespace ProductMS.DataAccess.SqlServer.Entities
 {
-    public class Product
+    public class Product : IModelTransformable<ProductModel>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

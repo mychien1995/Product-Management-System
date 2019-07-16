@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,7 +11,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NetCore.AutoRegisterDi;
+using ProductMS.Models.Interfaces;
+using ProductMS.Models.Products;
 using ProductMS.Services;
+using ProductMS.Services.Products;
 
 namespace ProductMS.Api
 {
@@ -28,6 +33,10 @@ namespace ProductMS.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSqlDataAccess();
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name.StartsWith("ProductMS")).ToArray();
+            services.RegisterAssemblyPublicNonGenericClasses(assemblies).Where(c => c.Name.EndsWith("Service"))
+                .AsPublicImplementedInterfaces();
+            services.RegisterGenericServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

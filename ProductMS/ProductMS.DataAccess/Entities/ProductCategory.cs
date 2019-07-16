@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProductMS.DataAccess.Entities
+namespace ProductMS.DataAccess.SqlServer.Entities
 {
     public class ProductCategory
     {

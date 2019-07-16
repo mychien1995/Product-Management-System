@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using ProductMS.DataAccess.Entities;
+using ProductMS.DataAccess.SqlServer.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace ProductMS.DataAccess.Databases
+namespace ProductMS.DataAccess.SqlServer.Databases
 {
     public class ProductDbContext : DbContext
     {

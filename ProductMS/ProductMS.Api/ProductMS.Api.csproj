@@ -11,9 +11,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="NetCore.AutoRegisterDi" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProductMS.DataAccess\ProductMS.DataAccess.SqlServer.csproj" />
     <ProjectReference Include="..\ProductMS.Models\ProductMS.Models.csproj" />
     <ProjectReference Include="..\ProductMS.Services\ProductMS.Services.csproj" />
   </ItemGroup>

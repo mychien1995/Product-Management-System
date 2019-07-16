@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProductMS.DataAccess.Databases;
+using ProductMS.DataAccess.SqlServer.Databases;
 
-namespace ProductMS.DataAccess.Migrations
+namespace ProductMS.DataAccess.SqlServer.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
     partial class ProductDbContextModelSnapshot : ModelSnapshot
@@ -19,7 +19,7 @@ namespace ProductMS.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ProductMS.DataAccess.Entities.Product", b =>
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()

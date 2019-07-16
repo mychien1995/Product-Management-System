@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ProductMS.DataAccess.Migrations
+namespace ProductMS.DataAccess.SqlServer.Migrations
 {
     public partial class _00 : Migration
     {

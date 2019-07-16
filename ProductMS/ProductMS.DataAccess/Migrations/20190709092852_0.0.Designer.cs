@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ProductMS.DataAccess.Databases;
+using ProductMS.DataAccess.SqlServer.Databases;
 
-namespace ProductMS.DataAccess.Migrations
+namespace ProductMS.DataAccess.SqlServer.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
     [Migration("20190709092852_0.0")]
@@ -21,7 +21,7 @@ namespace ProductMS.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ProductMS.DataAccess.Entities.Product", b =>
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Product", b =>
                 {
                     b.Property<int>("ProductId")
                         .ValueGeneratedOnAdd()
