@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProductMS.DataAccess\ProductMS.DataAccess.SqlServer.csproj" />
+    <ProjectReference Include="..\ProductMS.Framework\ProductMS.Framework.csproj" />
+    <ProjectReference Include="..\ProductMS.Models\ProductMS.Models.csproj" />
+    <ProjectReference Include="..\ProductMS.Services.Abstractions\ProductMS.Services.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,7 +1,5 @@
-﻿using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.Models.Interfaces;
-using ProductMS.Models.Products;
-using ProductMS.Services.Transforms;
+﻿using ProductMS.Models.Products;
+using ProductMS.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,11 +12,10 @@ namespace ProductMS.Services.Products
     }
     public class ProductService : BaseModelService<ProductModel>, IProductService
     {
-        public ProductService(IEntityService<IModelTransformable<ProductModel>> entityService,
-            IModelTransformer<ProductModel> modelTransformer)
-            : base(entityService, modelTransformer)
+        private readonly IProductDataProvider _provider;
+        public ProductService(IProductDataProvider provider) : base(provider)
         {
-
+            _provider = provider;
         }
     }
 }

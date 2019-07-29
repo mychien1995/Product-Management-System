@@ -1,5 +1,4 @@
-﻿using ProductMS.Models.Interfaces;
-using ProductMS.Models.Products;
+﻿using ProductMS.Models.Products;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,7 +7,7 @@ using System.Text;
 
 namespace ProductMS.DataAccess.SqlServer.Entities
 {
-    public class Product : IModelTransformable<ProductModel>
+    public class Product
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

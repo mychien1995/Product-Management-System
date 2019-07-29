@@ -1,30 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using ProductMS.DataAccess.SqlServer.Databases;
-using ProductMS.Models.Interfaces;
-using ProductMS.Models.Products;
-using ProductMS.Services.Products;
-using ProductMS.Services.Transforms;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ProductMS.Framework.Initializations;
+using ProductMS.Services.Abstractions;
 using System;
+using System.Collections.Generic;
+using System.Text;
+using EntityProvider = ProductMS.Services.Entities.Providers;
 
 namespace ProductMS.Services
 {
-    public static class ServiceInitialization
+    public class ServiceInitialization : IServiceInitialization
     {
-        public static void AddSqlDataAccess(this IServiceCollection services)
-        {
-            services.AddDbContext<ProductDbContext>();
-            using(var context = new ProductDbContext())
-            {
-                context.Database.Migrate();
-            }
-        }
+        public int Order => 2;
 
-        public static void RegisterGenericServices(this IServiceCollection services)
+        public bool Enabled => true;
+
+        public void RegisterServices(IServiceCollection services)
         {
-            services.AddTransient(typeof(IEntityService<IModelTransformable<ProductModel>>), typeof(IProductEntityService));
-            services.AddTransient(typeof(IModelTransformer<ProductModel>), typeof(ProductTransformer));
+            services.AddTransient<IProductDataProvider, EntityProvider.ProductDataProvider>();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using ProductMS.DataAccess.SqlServer.Databases;
 using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.Models.Interfaces;
 using ProductMS.Models.Products;
 using System;
 using System.Collections.Generic;

@@ -1,57 +1,46 @@
-﻿using ProductMS.Models.Interfaces;
-using ProductMS.Services.Transforms;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using ProductMS.Services.Abstractions;
 
 namespace ProductMS.Services
 {
     public class BaseModelService<TModel> : IModelService<TModel> where TModel : class 
     {
-        protected IEntityService<IModelTransformable<TModel>> _entityService;
-        protected IModelTransformer<TModel> _modelTransformer;
-        public BaseModelService(IEntityService<IModelTransformable<TModel>> entityService, IModelTransformer<TModel> modelTransformer)
+        protected IBaseDataProvider<TModel> _dataProvider;
+        public BaseModelService(IBaseDataProvider<TModel> dataProvider)
         {
-            _entityService = entityService;
-            _modelTransformer = modelTransformer;
+            _dataProvider = dataProvider;
         }
 
         public bool Delete(object id)
         {
-            return _entityService.Delete(id);
+            return _dataProvider.Delete(id);
         }
 
         public List<TModel> GetAll()
         {
-            var entityList = _entityService.GetAll();
-            return entityList.Select(x => _modelTransformer.ToModel(x)).ToList();
+            return _dataProvider.GetAll();
         }
 
         public TModel GetById(object id)
         {
-            var entity = _entityService.GetById(id);
-            if (entity == null) return null;
-            return _modelTransformer.ToModel(entity);
+            return _dataProvider.GetById(id);
         }
 
         public TModel Insert(TModel t)
         {
-            var entity = _modelTransformer.ToEntity(t);
-            var newEntity = _entityService.Insert(entity);
-            return _modelTransformer.ToModel(newEntity);
+            return _dataProvider.Insert(t);
         }
 
         public void SaveChanges()
         {
-            _entityService.SaveChanges();
+            _dataProvider.SaveChanges();
         }
 
         public TModel Update(TModel t)
         {
-            var entity = _modelTransformer.ToEntity(t);
-            var newEntity = _entityService.Update(entity);
-            return _modelTransformer.ToModel(newEntity);
+            return _dataProvider.Update(t);
         }
     }
 }
