@@ -20,7 +20,9 @@ namespace ProductMS.Services.Entities
         }
         public bool Delete(object id)
         {
-            return _repository.Delete(id);
+            var result = _repository.Delete(id);
+            _repository.SaveChanges();
+            return result;
         }
 
         public List<T> GetAll()
@@ -38,6 +40,7 @@ namespace ProductMS.Services.Entities
         public T Insert(T t)
         {
             var entity = _repository.Insert(_transformer.ToProviderData(t));
+            SaveChanges();
             return _transformer.ToModel(entity);
         }
 
@@ -49,6 +52,7 @@ namespace ProductMS.Services.Entities
         public T Update(T t)
         {
             var entity = _repository.Update(_transformer.ToProviderData(t));
+            SaveChanges();
             return _transformer.ToModel(entity);
         }
     }

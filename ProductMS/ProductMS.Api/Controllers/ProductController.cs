@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using ProductMS.Models.Common;
 using ProductMS.Models.Products;
 using ProductMS.Services.Products;
 
@@ -18,15 +19,36 @@ namespace ProductMS.Api.Controllers
             _productService = productService;
         }
         [HttpGet]
-        public ActionResult<IEnumerable<ProductModel>> Get()
+        public ActionResult<OperationResult<List<ProductModel>>> Get()
         {
             return _productService.GetAll();
         }
 
-        [HttpPost]
-        public ActionResult<ProductModel> Post(ProductModel model)
+        [HttpGet("{id}")]
+        public ActionResult<OperationResult<ProductModel>> Get(int id)
         {
-            return _productService.Insert(model);
+            return _productService.GetById(id);
+        }
+
+        [HttpPost]
+        public ActionResult<OperationResult<int>> Insert(ProductModel model)
+        {
+            var result = _productService.Insert(model);
+            return new OperationResult<int>(result.Data.ProductId);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<OperationResult<int>> Update(int id, [FromBody]ProductModel model)
+        {
+            model.ProductId = id;
+            var result = _productService.Update(model);
+            return new OperationResult<int>(result.Data.ProductId);
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<OperationResult> Delete(int id, ProductModel model)
+        {
+            return _productService.Delete(model);
         }
     }
 }

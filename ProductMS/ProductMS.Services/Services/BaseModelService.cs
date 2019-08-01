@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ProductMS.Models.Common;
+using ProductMS.Models.Interfaces;
 using ProductMS.Services.Abstractions;
 
 namespace ProductMS.Services
 {
-    public class BaseModelService<TModel> : IModelService<TModel> where TModel : class 
+    public class BaseModelService<TModel> : IModelService<TModel> where TModel : class
     {
         protected IBaseDataProvider<TModel> _dataProvider;
         public BaseModelService(IBaseDataProvider<TModel> dataProvider)
@@ -13,34 +15,50 @@ namespace ProductMS.Services
             _dataProvider = dataProvider;
         }
 
-        public bool Delete(object id)
+        public virtual OperationResult Delete(object id)
         {
-            return _dataProvider.Delete(id);
+            var result = _dataProvider.Delete(id);
+            return new OperationResult()
+            {
+                IsSuccess = result
+            };
         }
 
-        public List<TModel> GetAll()
+        public virtual OperationResult<List<TModel>> GetAll()
         {
-            return _dataProvider.GetAll();
+            var data = _dataProvider.GetAll();
+            return OperationResult.From(data);
         }
 
-        public TModel GetById(object id)
+        public virtual OperationResult<TModel> GetById(object id)
         {
-            return _dataProvider.GetById(id);
+            var data = _dataProvider.GetById(id);
+            return OperationResult.From(data);
         }
 
-        public TModel Insert(TModel t)
+        public virtual OperationResult<TModel> Insert(TModel t)
         {
-            return _dataProvider.Insert(t);
+            if (t is IChangeTrackable)
+            {
+                ((IChangeTrackable)t).CreatedDate = DateTime.Now;
+                ((IChangeTrackable)t).UpdatedDate = DateTime.Now;
+            }
+            if (t is IPreservable)
+            {
+                ((IPreservable)t).IsDeleted = false;
+            }
+            var data = _dataProvider.Insert(t);
+            return OperationResult.From(data);
         }
 
-        public void SaveChanges()
+        public virtual OperationResult<TModel> Update(TModel t)
         {
-            _dataProvider.SaveChanges();
-        }
-
-        public TModel Update(TModel t)
-        {
-            return _dataProvider.Update(t);
+            if (t is IChangeTrackable)
+            {
+                ((IChangeTrackable)t).UpdatedDate = DateTime.Now;
+            }
+            var data = _dataProvider.Update(t);
+            return OperationResult.From(data);
         }
     }
 }
