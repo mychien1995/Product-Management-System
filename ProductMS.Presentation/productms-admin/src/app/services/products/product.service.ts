@@ -18,13 +18,23 @@ export class ProductService {
    }
 
   getProducts() : Observable<Product[]>{
-  	var url = this.BaseApiUrl + '/products';
-  	return this._httpClient.get(url).pipe(map(data => data.Data));
+  	var url = `${this.BaseApiUrl}/products`;
+  	return this._httpClient.get(url).pipe(map(data => data["Data"]));
   }
 
   getProduct(id : any) : Observable<Product>{
-  	var product : Product  = { ProductId : 10, ProductName : 'sdf'};
-  	return of(product);
+  	var url = `${this.BaseApiUrl}/products/${id}`;
+  	return this._httpClient.get(url).pipe(map(data => data["Data"]));
   }
 
+  insertProduct(product: Product) : Observable<any>{
+  	var url = `${this.BaseApiUrl}/products/`;
+  	return this._httpClient.post(url, product).pipe(map(data => data["Data"]));
+  }
+
+  updateProduct(product: Product) : Observable<any>{
+    var url = `${this.BaseApiUrl}/products/${product.ProductId}`;
+    return this._httpClient.put(url, product).pipe(map(data => data["Data"]));
+  }
+  
 }

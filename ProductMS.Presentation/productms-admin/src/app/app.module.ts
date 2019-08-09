@@ -9,18 +9,22 @@ import { ProductDetailComponent } from './components/products/productdetail.comp
 import { HttpClientModule }    from '@angular/common/http';
 import { ConfigModule, ConfigService } from './services/shared/config.service';
 import { APP_CONFIG, AppSetting } from './providers/config.provider';
+import { ProductEditFormComponent } from './components/products/editform.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
     DashboardComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductEditFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     ConfigService,
