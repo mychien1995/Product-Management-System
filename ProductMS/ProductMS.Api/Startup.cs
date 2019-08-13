@@ -37,10 +37,9 @@ namespace ProductMS.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.ConfigureCors();
-            services.ConfigureMvc();
             services.InitializeServices();
-            services.ConfigureIdentity();
-
+            services.ConfigureIdentity(Configuration["Tokens:Key"], Configuration["Tokens:Audience"], Configuration["Tokens:Issuer"]);
+            services.ConfigureMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

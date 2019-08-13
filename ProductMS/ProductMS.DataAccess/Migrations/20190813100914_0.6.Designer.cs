@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductMS.DataAccess.SqlServer.Databases;
 
 namespace ProductMS.DataAccess.SqlServer.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    partial class ProductDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190813100914_0.6")]
+    partial class _06
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,7 +76,7 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims");
+                    b.ToTable("ApplicationRoleClaim");
                 });
 
             modelBuilder.Entity("ProductMS.Models.Models.Users.ApplicationUser", b =>
@@ -134,7 +136,7 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims");
+                    b.ToTable("ApplicationUserClaim");
                 });
 
             modelBuilder.Entity("ProductMS.Models.Models.Users.ApplicationUserLogin", b =>
@@ -151,7 +153,7 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins");
+                    b.ToTable("ApplicationUserLogin");
                 });
 
             modelBuilder.Entity("ProductMS.Models.Models.Users.ApplicationUserRole", b =>
@@ -164,7 +166,7 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles");
+                    b.ToTable("ApplicationUserRole");
                 });
 
             modelBuilder.Entity("ProductMS.Models.Models.Users.ApplicationUserToken", b =>
@@ -179,7 +181,7 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens");
+                    b.ToTable("ApplicationUserToken");
                 });
 
             modelBuilder.Entity("ProductMS.Models.Models.Users.ApplicationRoleClaim", b =>
