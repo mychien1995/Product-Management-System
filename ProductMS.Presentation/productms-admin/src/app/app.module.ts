@@ -11,6 +11,9 @@ import { ConfigModule, ConfigService } from './services/shared/config.service';
 import { APP_CONFIG, AppSetting } from './providers/config.provider';
 import { ProductEditFormComponent } from './components/products/editform.component';
 import { FormsModule } from "@angular/forms";
+import { LoginComponent } from './components/authentication/login.component';
+import { LocalStorageModule } from 'angular-2-local-storage';
+import { RegisterComponent } from './components/authentication/register.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +21,19 @@ import { FormsModule } from "@angular/forms";
     ProductsComponent,
     DashboardComponent,
     ProductDetailComponent,
-    ProductEditFormComponent
+    ProductEditFormComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    LocalStorageModule.forRoot({
+        prefix: 'my-app',
+        storageType: 'localStorage'
+    })
   ],
   providers: [
     ConfigService,
