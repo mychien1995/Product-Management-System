@@ -13,14 +13,15 @@ import { RegisterModel } from '../../models/authentication/register.model';
 })
 export class AuthenticationService {
 
-  BaseApiUrl : string;
+  private BaseApiUrl : string;
+  private TokenStorageKey : string;
 
   constructor(private _httpClient : HttpClient, private _localStorageService : LocalStorageService) { 
-  	this.BaseApiUrl = APP_CONFIG.BaseApiUrl;
+  	this.TokenStorageKey = 'app-token';
   }
 
   login(user : LoginModel) : Observable<MessageModel>{
-  	var url = `${this.BaseApiUrl}/authentication/token`;
+  	var url = `${APP_CONFIG.BaseApiUrl}/authentication/token`;
   	var requestOptions : Object = {
 	    responseType: 'text'
 	};
@@ -43,6 +44,10 @@ export class AuthenticationService {
   	 );
   }
 
+  getToken() : string{
+  	return this._localStorageService.get(this.TokenStorageKey);
+  }
+
   private loginError(error: HttpErrorResponse) {
 	  console.log(
 	      `Backend returned code ${error.status}, ` +
@@ -57,7 +62,7 @@ export class AuthenticationService {
   };
 
   private loginSuccess(data: Object) {
-	  this._localStorageService.set('app-token', data);
+	  this._localStorageService.set(this.TokenStorageKey, data);
 	  var result : MessageModel = {
 	  	Message : "Login successfully",
 	  	IsSuccess : true
@@ -66,7 +71,7 @@ export class AuthenticationService {
   };
 
   private registerSuccess(data: Object) {
-	  this._localStorageService.set('app-token', data);
+	  this._localStorageService.set(this.TokenStorageKey, data);
 	  var result : MessageModel = {
 	  	Message : "Register successfully",
 	  	IsSuccess : true
