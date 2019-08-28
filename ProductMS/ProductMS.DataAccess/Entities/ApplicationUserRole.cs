@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProductMS.Models.Models.Users
+namespace ProductMS.DataAccess.SqlServer.Entities
 {
     public class ApplicationUserRole : IdentityUserRole<string>
     {

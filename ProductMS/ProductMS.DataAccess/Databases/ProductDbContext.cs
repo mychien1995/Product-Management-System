@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.Models.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -32,7 +31,6 @@ namespace ProductMS.DataAccess.SqlServer.Databases
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Product>().Property(x => x.ProductId).UseSqlServerIdentityColumn();
             modelBuilder.Entity<ApplicationUserRole>(x => x.HasKey(r => new { r.UserId, r.RoleId }));
             modelBuilder.Entity<ApplicationUserLogin>(b => b.HasKey(x => new { x.LoginProvider, x.ProviderKey, x.UserId }));
             modelBuilder.Entity<ApplicationUserClaim>(b => b.HasKey(x => new { x.Id }));
@@ -73,8 +71,16 @@ namespace ProductMS.DataAccess.SqlServer.Databases
                     .HasForeignKey(rc => rc.RoleId)
                     .IsRequired();
             });
+            modelBuilder.Entity<Product>().Property(x => x.ProductId).UseSqlServerIdentityColumn();
+            modelBuilder.Entity<Article>().Property(x => x.ArticleId).UseSqlServerIdentityColumn();
+            modelBuilder.Entity<Article>()
+                .HasOne(p => p.CreatedByUser)
+                .WithMany(b => b.ArticlesCreated);
+            modelBuilder.Entity<Article>()
+               .HasOne(p => p.UpdatedByUser)
+               .WithMany(b => b.ArticlesUpdated);
         }
-        
+
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<ApplicationRole> Roles { get; set; }

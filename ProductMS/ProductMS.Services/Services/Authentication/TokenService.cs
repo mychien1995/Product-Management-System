@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
+using ProductMS.DataAccess.SqlServer.Entities;
 using ProductMS.Models.Models.Users;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace ProductMS.Services.Services.Authentication
 {
     public interface ITokenService
     {
-        string GetToken(ApplicationUser user);
+        string GetToken(UserModel user);
     }
     public class TokenService : ITokenService
     {
@@ -22,7 +23,7 @@ namespace ProductMS.Services.Services.Authentication
         {
             _configuration = configuration;
         }
-        public string GetToken(ApplicationUser user)
+        public string GetToken(UserModel user)
         {
             var utcNow = DateTime.UtcNow;
 

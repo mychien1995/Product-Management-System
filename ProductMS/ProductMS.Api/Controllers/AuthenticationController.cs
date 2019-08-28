@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using ProductMS.Api.Models;
+using ProductMS.DataAccess.SqlServer.Entities;
 using ProductMS.Models.Models.Users;
+using ProductMS.Services.Abstractions.Interfaces;
 using ProductMS.Services.Services.Authentication;
 using System;
 using System.Collections.Generic;
@@ -18,14 +20,11 @@ namespace ProductMS.Api.Controllers
     [ApiController]
     public class AuthenticationController : ControllerBase
     {
-        private UserManager<ApplicationUser> _userManager;
-        private SignInManager<ApplicationUser> _signInManager;
+        private IUserManager _userManager;
         private ITokenService _tokenService;
-        public AuthenticationController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager
-            , ITokenService tokenService)
+        public AuthenticationController(IUserManager userManager, ITokenService tokenService)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
             _tokenService = tokenService;
         }
 
@@ -35,12 +34,12 @@ namespace ProductMS.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-                var loginResult = await _signInManager.PasswordSignInAsync(model.Username, model.Password, isPersistent: false, lockoutOnFailure: false);
+                var loginResult = await _userManager.PasswordSignInAsync(model.Username, model.Password, isPersistent: false, lockoutOnFailure: false);
                 if (!loginResult.Succeeded)
                 {
                     return BadRequest();
                 }
-                var user = await _userManager.FindByNameAsync(model.Username);
+                var user = await _userManager.FindUserByName(model.Username);
                 return Ok(_tokenService.GetToken(user));
 
             }
@@ -54,7 +53,7 @@ namespace ProductMS.Api.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser
+                var user = new UserModel
                 {
                     UserName = registerModel.Username,
                     Email = registerModel.Email,
@@ -64,7 +63,7 @@ namespace ProductMS.Api.Controllers
                 var identityResult = await this._userManager.CreateAsync(user, registerModel.Password);
                 if (identityResult.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await _userManager.SignInAsync(user, isPersistent: false);
                     return Ok(_tokenService.GetToken(user));
                 }
                 else

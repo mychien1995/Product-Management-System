@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProductMS.Models.Models.Users
+namespace ProductMS.DataAccess.SqlServer.Entities
 {
     public class ApplicationUser : IdentityUser
     {
@@ -12,6 +12,9 @@ namespace ProductMS.Models.Models.Users
         public virtual ICollection<ApplicationUserToken> Tokens { get; set; }
         public virtual ICollection<ApplicationUserRole> UserRoles { get; set; }
         public string Fullname { get; set; }
+
+        public virtual List<Article> ArticlesCreated { get; set; }
+        public virtual List<Article> ArticlesUpdated { get; set; }
     }
 
     public class ApplicationUserClaim : IdentityUserClaim<string>

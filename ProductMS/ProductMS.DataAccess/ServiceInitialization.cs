@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ProductMS.DataAccess.SqlServer.Databases;
 using ProductMS.DataAccess.SqlServer.Entities;
 using ProductMS.Framework.Initializations;
+using ProductMS.Models.Models.Users;
 using ProductMS.Models.Products;
 using ProductMS.Services.Abstractions;
 using System;
@@ -21,6 +22,7 @@ namespace ProductMS.DataAccess.SqlServer
                 context.Database.Migrate();
             }
             services.AddTransient<IModelTransformer<ProductModel, Product>, ProductEntityTransformer>();
+            services.AddTransient<IModelTransformer<UserModel, ApplicationUser>, UserEntityTransformer>();
         }
     }
 }

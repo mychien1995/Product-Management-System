@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using ProductMS.DataAccess.SqlServer.Entities;
 using ProductMS.Models.Models.Users;
 
 namespace ProductMS.DataAccess.SqlServer.Extensions

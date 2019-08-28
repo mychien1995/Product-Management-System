@@ -10,7 +10,7 @@ using Newtonsoft.Json.Serialization;
 using ProductMS.DataAccess.SqlServer.Databases;
 using ProductMS.DataAccess.SqlServer.Extensions;
 using ProductMS.Framework.Initializations;
-using ProductMS.Models.Models.Users;
+using ProductMS.DataAccess.SqlServer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
