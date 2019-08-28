@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using NetCore.AutoRegisterDi;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using ProductMS.Framework.Configurations;
 using ProductMS.Utils.Helpers;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ namespace ProductMS.Framework.Initializations
             var configFilePath = webRootPath + "/Config/app.initialization.json";
             var configFileContent = System.IO.File.ReadAllText(configFilePath);
             var configModule = JObject.Parse(configFileContent);
-            var initializationModules = configModule["serviceInitializations"];
+            var initializationModules = configModule["initializations"];
             foreach (var moduleType in initializationModules)
             {
                 var instanceType = Type.GetType(moduleType["type"].ToString(), true, true);

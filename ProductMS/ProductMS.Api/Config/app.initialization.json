@@ -1,10 +1,22 @@
 {
-  "serviceInitializations": [
+  "initializations": [
     {
       "type": "ProductMS.DataAccess.SqlServer.ServiceInitialization, ProductMS.DataAccess.SqlServer"
     },
     {
       "type": "ProductMS.Services.ServiceInitialization, ProductMS.Services"
+    },
+    {
+      "type": "ProductMS.Api.Initializations.ConfigureCorsInitialization, ProductMS.Api"
+    },
+    {
+      "type": "ProductMS.Api.Initializations.ConfigureIdentityInitialization, ProductMS.Api"
+    },
+    {
+      "type": "ProductMS.Api.Initializations.ConfigureMvcInitialization, ProductMS.Api"
+    },
+    {
+      "type": "ProductMS.DataAccess.SqlServer.DataSeedingInitialization, ProductMS.DataAccess.SqlServer"
     }
   ]
 }
