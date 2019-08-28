@@ -16,6 +16,7 @@ namespace ProductMS.Services
         {
             services.AddTransient<IProductDataProvider, EntityProvider.ProductDataProvider>();
             services.AddTransient<IUserManager, EntityProvider.Users.EntityUserManager>();
+            services.AddTransient<IArticleDataProvider, EntityProvider.ArticleDataProvider>();
         }
     }
 }
