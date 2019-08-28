@@ -5,11 +5,8 @@ using System.Text;
 
 namespace ProductMS.Framework.Initializations
 {
-    public interface IServiceInitialization
+    public interface IServiceInitializationModule
     {
-        int Order { get; }
-
-        bool Enabled { get; }
-        void RegisterServices(IServiceCollection services);
+        void Initialize(IServiceCollection services);
     }
 }

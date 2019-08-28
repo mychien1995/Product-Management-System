@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProductMS.DataAccess\ProductMS.DataAccess.SqlServer.csproj" />
     <ProjectReference Include="..\ProductMS.Framework\ProductMS.Framework.csproj" />
     <ProjectReference Include="..\ProductMS.Models\ProductMS.Models.csproj" />
     <ProjectReference Include="..\ProductMS.Services.Abstractions\ProductMS.Services.Abstractions.csproj" />
-    <ProjectReference Include="..\ProductMS.Services.Entities\ProductMS.Services.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>

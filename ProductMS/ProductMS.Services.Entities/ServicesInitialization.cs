@@ -10,11 +10,12 @@ using System.Text;
 
 namespace ProductMS.Services.Entities
 {
-    public class ServicesInitialization : IServiceInitialization
+    public class ServicesInitialization : IInitializableModule
     {
-        public int Order => 1;
+        public void Initialize()
+        {
 
-        public bool Enabled => true;
+        }
 
         public void RegisterServices(IServiceCollection services)
         {

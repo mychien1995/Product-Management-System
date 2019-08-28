@@ -9,6 +9,7 @@ using NetCore.AutoRegisterDi;
 using Newtonsoft.Json.Serialization;
 using ProductMS.DataAccess.SqlServer.Databases;
 using ProductMS.DataAccess.SqlServer.Extensions;
+using ProductMS.Framework.Initializations;
 using ProductMS.Models.Models.Users;
 using System;
 using System.Collections.Generic;
@@ -42,9 +43,7 @@ namespace ProductMS.Api.Extensions
 
         public static void InitializeServices(this IServiceCollection services)
         {
-            services.RegisterServices();
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies().Where(x => x.GetName().Name.StartsWith("ProductMS")).ToArray();
-            services.RegisterAssemblyPublicNonGenericClasses(assemblies).AsPublicImplementedInterfaces();
+            InitializationModule.InitializeServices(services);
         }
 
         public static void ConfigureIdentity(this IServiceCollection services, string tokenKey, string tokenAudience, string tokenIssuer)

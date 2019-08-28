@@ -1,0 +1,10 @@
+{
+  "serviceInitializations": [
+    {
+      "type": "ProductMS.DataAccess.SqlServer.ServiceInitialization, ProductMS.DataAccess.SqlServer"
+    },
+    {
+      "type": "ProductMS.Services.ServiceInitialization, ProductMS.Services"
+    }
+  ]
+}
