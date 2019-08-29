@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProductMS.Models.Common;
 using ProductMS.Models.Products;
-using ProductMS.Services.Products;
+using ProductMS.Services;
 
 namespace ProductMS.Api.Controllers
 {

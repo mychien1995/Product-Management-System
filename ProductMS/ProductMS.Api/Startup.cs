@@ -20,7 +20,7 @@ using ProductMS.DataAccess.SqlServer.Databases;
 using ProductMS.Framework.Initializations;
 using ProductMS.Models.Products;
 using ProductMS.Services;
-using ProductMS.Services.Products;
+using ProductMS.Services;
 
 namespace ProductMS.Api
 {

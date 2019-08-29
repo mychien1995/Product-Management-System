@@ -1,22 +1,24 @@
-﻿using ProductMS.Models.Articles;
+﻿using ProductMS.DataAccess.SqlServer.Entities;
+using ProductMS.DataAccess.SqlServer.Repositories;
+using ProductMS.Models.Articles;
+using ProductMS.Services;
 using ProductMS.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProductMS.Services.Articles
+namespace ProductMS.Services
 {
     public interface IArticleService : IModelService<ArticleModel>
     {
 
     }
-    public class ArticleService : BaseModelService<ArticleModel>, IArticleService
+    public class ArticleService : BaseModelService<ArticleModel, Article>, IArticleService
     {
-        private readonly IArticleDataProvider _provider;
-        public ArticleService(IArticleDataProvider provider) : base(provider)
+        private readonly IArticleRepository _repository;
+        public ArticleService(IArticleRepository repository, IModelTransformer<ArticleModel, Article> transformer) : base(repository, transformer)
         {
-            _provider = provider;
+            _repository = repository;
         }
     }
 }
-

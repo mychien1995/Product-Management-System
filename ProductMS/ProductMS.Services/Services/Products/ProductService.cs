@@ -1,21 +1,23 @@
-﻿using ProductMS.Models.Products;
+﻿using ProductMS.DataAccess.SqlServer.Entities;
+using ProductMS.DataAccess.SqlServer.Repositories;
+using ProductMS.Models.Products;
 using ProductMS.Services.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ProductMS.Services.Products
+namespace ProductMS.Services
 {
     public interface IProductService : IModelService<ProductModel>
     {
 
     }
-    public class ProductService : BaseModelService<ProductModel>, IProductService
+    public class ProductService : BaseModelService<ProductModel, Product>, IProductService
     {
-        private readonly IProductDataProvider _provider;
-        public ProductService(IProductDataProvider provider) : base(provider)
+        private readonly IProductRepository _repository;
+        public ProductService(IProductRepository repository, IModelTransformer<ProductModel, Product> transformer) : base(repository, transformer)
         {
-            _provider = provider;
+            _repository = repository;
         }
     }
 }

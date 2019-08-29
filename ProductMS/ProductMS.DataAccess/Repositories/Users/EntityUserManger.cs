@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductMS.DataAccess.SqlServer.Providers.Users
+namespace ProductMS.DataAccess.SqlServer.Repositories.Users
 {
     public class EntityUserManager : IUserManager
     {
