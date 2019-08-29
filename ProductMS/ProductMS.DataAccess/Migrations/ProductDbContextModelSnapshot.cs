@@ -19,6 +19,33 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Address", b =>
+                {
+                    b.Property<int>("AddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AddressLine");
+
+                    b.Property<int>("CountryId");
+
+                    b.Property<int?>("DistrictId");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<int>("ProvinceId");
+
+                    b.HasKey("AddressId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("DistrictId");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("Addresses");
+                });
+
             modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.ApplicationRole", b =>
                 {
                     b.Property<string>("Id")
@@ -52,7 +79,7 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims");
+                    b.ToTable("ApplicationRoleClaim");
                 });
 
             modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.ApplicationUser", b =>
@@ -195,7 +222,104 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
 
                     b.HasIndex("UpdatedBy");
 
-                    b.ToTable("Article");
+                    b.ToTable("Articles");
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Country", b =>
+                {
+                    b.Property<int>("CountryId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CountryCode");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("CountryId");
+
+                    b.ToTable("Countries");
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.District", b =>
+                {
+                    b.Property<int>("DistrictId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("ProvinceId");
+
+                    b.HasKey("DistrictId");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("Districts");
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Language", b =>
+                {
+                    b.Property<int>("LanguageId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Culture");
+
+                    b.Property<string>("LanguageCode");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("LanguageId");
+
+                    b.ToTable("Languages");
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Organization", b =>
+                {
+                    b.Property<int>("OrganizationId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CMSHostNames");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("OrganizationName");
+
+                    b.Property<int>("ProvinceId");
+
+                    b.Property<string>("WebHostNames");
+
+                    b.HasKey("OrganizationId");
+
+                    b.HasIndex("ProvinceId");
+
+                    b.ToTable("Organizations");
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.OrganizationAddress", b =>
+                {
+                    b.Property<int>("OrganizationAddressId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AddressId");
+
+                    b.Property<bool>("IsPrimary");
+
+                    b.Property<int>("OrganizationId");
+
+                    b.HasKey("OrganizationAddressId");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("OrganizationId");
+
+                    b.ToTable("OrganizationAddresses");
                 });
 
             modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Product", b =>
@@ -218,6 +342,41 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
                     b.HasKey("ProductId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Province", b =>
+                {
+                    b.Property<int>("ProvinceId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CountryId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("ProvinceId");
+
+                    b.HasIndex("CountryId");
+
+                    b.ToTable("Provinces");
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Address", b =>
+                {
+                    b.HasOne("ProductMS.DataAccess.SqlServer.Entities.Country", "Country")
+                        .WithMany("Addresses")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ProductMS.DataAccess.SqlServer.Entities.District", "District")
+                        .WithMany("Addresses")
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ProductMS.DataAccess.SqlServer.Entities.Province", "Province")
+                        .WithMany("Addresses")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.ApplicationRoleClaim", b =>
@@ -269,11 +428,50 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
                 {
                     b.HasOne("ProductMS.DataAccess.SqlServer.Entities.ApplicationUser", "CreatedByUser")
                         .WithMany("ArticlesCreated")
-                        .HasForeignKey("CreatedBy");
+                        .HasForeignKey("CreatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("ProductMS.DataAccess.SqlServer.Entities.ApplicationUser", "UpdatedByUser")
                         .WithMany("ArticlesUpdated")
-                        .HasForeignKey("UpdatedBy");
+                        .HasForeignKey("UpdatedBy")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.District", b =>
+                {
+                    b.HasOne("ProductMS.DataAccess.SqlServer.Entities.Province", "Province")
+                        .WithMany("Districts")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Organization", b =>
+                {
+                    b.HasOne("ProductMS.DataAccess.SqlServer.Entities.Province", "Province")
+                        .WithMany("Organizations")
+                        .HasForeignKey("ProvinceId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.OrganizationAddress", b =>
+                {
+                    b.HasOne("ProductMS.DataAccess.SqlServer.Entities.Address", "Address")
+                        .WithMany("Organizations")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ProductMS.DataAccess.SqlServer.Entities.Organization", "Organization")
+                        .WithMany("Addresses")
+                        .HasForeignKey("OrganizationId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.Province", b =>
+                {
+                    b.HasOne("ProductMS.DataAccess.SqlServer.Entities.Country", "Country")
+                        .WithMany("Provinces")
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

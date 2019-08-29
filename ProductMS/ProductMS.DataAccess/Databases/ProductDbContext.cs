@@ -72,19 +72,37 @@ namespace ProductMS.DataAccess.SqlServer.Databases
             modelBuilder.Entity<Article>().Property(x => x.ArticleId).UseSqlServerIdentityColumn();
             modelBuilder.Entity<Article>()
                 .HasOne(p => p.CreatedByUser)
-                .WithMany(b => b.ArticlesCreated);
+                .WithMany(b => b.ArticlesCreated).OnDelete(DeleteBehavior.Restrict);
             modelBuilder.Entity<Article>()
                .HasOne(p => p.UpdatedByUser)
-               .WithMany(b => b.ArticlesUpdated);
+               .WithMany(b => b.ArticlesUpdated).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Province>().HasOne(p => p.Country).WithMany(x => x.Provinces).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<District>().HasOne(p => p.Province).WithMany(x => x.Districts).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Address>().Property(x => x.AddressId).UseSqlServerIdentityColumn();
+            modelBuilder.Entity<Address>().HasOne(p => p.Country).WithMany(x => x.Addresses).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Address>().HasOne(p => p.District).WithMany(x => x.Addresses).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Address>().HasOne(p => p.Province).WithMany(x => x.Addresses).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Organization>().Property(x => x.OrganizationId).UseSqlServerIdentityColumn();
+            modelBuilder.Entity<Organization>().HasOne(p => p.Province).WithMany(x => x.Organizations).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<OrganizationAddress>().HasOne(p => p.Organization).WithMany(x => x.Addresses).OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<OrganizationAddress>().HasOne(p => p.Address).WithMany(x => x.Organizations).OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<Article> Articles { get; set; }
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<ApplicationRole> Roles { get; set; }
+        public DbSet<ApplicationRoleClaim> RoleClaims { get; set; }
         public DbSet<ApplicationUserRole> UserRoles { get; set; }
         public DbSet<ApplicationUserLogin> UserLogins { get; set; }
         public DbSet<ApplicationUserClaim> UserClaims { get; set; }
         public DbSet<ApplicationUserToken> UserTokens { get; set; }
-        public DbSet<ApplicationRoleClaim> RoleClaims { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+        public DbSet<OrganizationAddress> OrganizationAddresses { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Province> Provinces { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Language> Languages { get; set; }
     }
 }
