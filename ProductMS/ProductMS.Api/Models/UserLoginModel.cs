@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ProductMS.Api.Models
+﻿namespace ProductMS.Api.Models
 {
     public class UserLoginModel
     {

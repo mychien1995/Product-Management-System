@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using ProductMS.Models.Models.Users;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ProductMS.Models;
 using System.Threading.Tasks;
 
 namespace ProductMS.Services.Abstractions.Interfaces

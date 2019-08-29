@@ -1,22 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using NetCore.AutoRegisterDi;
 using Newtonsoft.Json.Serialization;
 using ProductMS.DataAccess.SqlServer.Databases;
+using ProductMS.DataAccess.SqlServer.Entities;
 using ProductMS.DataAccess.SqlServer.Extensions;
 using ProductMS.Framework.Initializations;
-using ProductMS.DataAccess.SqlServer.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ProductMS.Api.Extensions
 {

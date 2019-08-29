@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProductMS.Models.Common
+﻿namespace ProductMS.Models.Common
 {
     public class OperationResult<T> : OperationResult
     {

@@ -1,11 +1,8 @@
 ﻿using ProductMS.DataAccess.SqlServer.Entities;
 using ProductMS.DataAccess.SqlServer.Repositories;
-using ProductMS.Models.Products;
-using ProductMS.Services.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ProductMS.Models;
 
+using ProductMS.Services.Abstractions;
 namespace ProductMS.Services
 {
     public interface IProductService : IModelService<ProductModel>

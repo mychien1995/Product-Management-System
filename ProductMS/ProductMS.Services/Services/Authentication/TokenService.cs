@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
-using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.Models.Models.Users;
+using ProductMS.Models;
 using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

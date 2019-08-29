@@ -1,11 +1,7 @@
 ﻿using ProductMS.DataAccess.SqlServer.Entities;
 using ProductMS.DataAccess.SqlServer.Repositories;
-using ProductMS.Models.Articles;
-using ProductMS.Services;
+using ProductMS.Models;
 using ProductMS.Services.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProductMS.Services
 {

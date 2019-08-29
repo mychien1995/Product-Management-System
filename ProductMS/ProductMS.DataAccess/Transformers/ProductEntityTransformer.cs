@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.Models.Products;
+﻿using ProductMS.DataAccess.SqlServer.Entities;
+using ProductMS.Framework.IoC;
+using ProductMS.Models;
 using ProductMS.Services.Abstractions;
-
 namespace ProductMS.DataAccess.SqlServer
 {
+    [ServiceTypeOf(typeof(IModelTransformer<ProductModel, Product>))]
     public class ProductEntityTransformer : IModelTransformer<ProductModel, Product>
     {
         public Product ToProviderData(ProductModel model)

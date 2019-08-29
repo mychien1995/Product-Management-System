@@ -1,12 +1,11 @@
-﻿using System;
-using System.Reflection;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.Models.Models.Users;
+using System;
+using System.Reflection;
 
 namespace ProductMS.DataAccess.SqlServer.Extensions
 {

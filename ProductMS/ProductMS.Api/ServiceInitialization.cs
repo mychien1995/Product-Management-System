@@ -2,10 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using ProductMS.Api.Extensions;
 using ProductMS.Framework.Initializations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProductMS.Api.Initializations
 {

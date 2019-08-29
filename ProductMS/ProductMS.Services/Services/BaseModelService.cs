@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ProductMS.DataAccess.SqlServer.Repositories;
+﻿using ProductMS.DataAccess.SqlServer.Repositories;
 using ProductMS.Models.Common;
 using ProductMS.Models.Interfaces;
 using ProductMS.Services.Abstractions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ProductMS.Services
 {
@@ -51,7 +51,7 @@ namespace ProductMS.Services
             {
                 ((IPreservable)t).IsDeleted = false;
             }
-            
+
             var data = _repository.Insert(_transformer.ToProviderData(t));
             return OperationResult.From(_transformer.ToModel(data));
         }

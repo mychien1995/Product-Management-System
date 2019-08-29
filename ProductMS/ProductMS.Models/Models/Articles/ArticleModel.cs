@@ -1,9 +1,7 @@
 ﻿using ProductMS.Models.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ProductMS.Models.Articles
+namespace ProductMS.Models
 {
     public class ArticleModel : IChangeTrackable, IPreservable
     {

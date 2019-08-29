@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.Models.Articles;
+﻿using ProductMS.DataAccess.SqlServer.Entities;
+using ProductMS.Framework.IoC;
+using ProductMS.Models;
 using ProductMS.Services.Abstractions;
 
 namespace ProductMS.DataAccess.SqlServer
 {
+    [ServiceTypeOf(typeof(IModelTransformer<ArticleModel, Article>))]
     public class ArticleEntityTransformer : IModelTransformer<ArticleModel, Article>
     {
         public Article ToProviderData(ArticleModel model)

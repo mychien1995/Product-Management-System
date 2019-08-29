@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
 namespace ProductMS.Utils.Helpers
 {
@@ -31,6 +30,47 @@ namespace ProductMS.Utils.Helpers
             }
             while (stack.Count > 0);
 
+        }
+
+        public static IEnumerable<Type> GetClasses(Assembly assembly, Expression<Func<Type, bool>> predicate)
+        {
+            var compiled = predicate.Compile();
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (compiled.Invoke(type))
+                {
+                    yield return type;
+                }
+            }
+        }
+
+        public static IEnumerable<Type> GetClasses(Assembly[] assemblies, Expression<Func<Type, bool>> predicate)
+        {
+            var compiled = predicate.Compile();
+            foreach (var assembly in assemblies)
+            {
+                foreach (Type type in assembly.GetTypes())
+                {
+                    if (compiled.Invoke(type))
+                    {
+                        yield return type;
+                    }
+                }
+            }
+        }
+
+        public static IEnumerable<Type> GetClassesWithAttribute(Assembly[] assemblies, Type attributeType)
+        {
+            foreach (var assembly in assemblies)
+            {
+                foreach (Type type in assembly.GetTypes())
+                {
+                    if (type.GetCustomAttributes(attributeType, true).Length > 0)
+                    {
+                        yield return type;
+                    }
+                }
+            }
         }
     }
 }

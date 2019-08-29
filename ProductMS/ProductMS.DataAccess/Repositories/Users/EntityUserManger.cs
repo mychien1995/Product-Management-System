@@ -1,15 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.DataAccess.SqlServer;
-using ProductMS.Models.Models.Users;
+using ProductMS.Framework.IoC;
+using ProductMS.Models;
 using ProductMS.Services.Abstractions.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProductMS.DataAccess.SqlServer.Repositories.Users
 {
+    [ServiceTypeOf(typeof(IUserManager))]
     public class EntityUserManager : IUserManager
     {
         private UserManager<ApplicationUser> _userManager;

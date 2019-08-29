@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ProductMS.Models;
 using ProductMS.Models.Common;
-using ProductMS.Models.Products;
 using ProductMS.Services;
-
+using System.Collections.Generic;
 namespace ProductMS.Api.Controllers
 {
     [Route("api/[controller]")]

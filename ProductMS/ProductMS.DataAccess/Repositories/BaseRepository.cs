@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ProductMS.DataAccess.SqlServer.Repositories
@@ -25,7 +24,7 @@ namespace ProductMS.DataAccess.SqlServer.Repositories
             try
             {
                 var entity = GetById(id);
-                if(entity != null)
+                if (entity != null)
                 {
                     var entry = DbContext.Entry(entity);
                     entry.State = EntityState.Deleted;

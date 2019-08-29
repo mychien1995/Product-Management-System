@@ -1,12 +1,11 @@
 ﻿using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.Models.Models.Users;
+using ProductMS.Framework.IoC;
+using ProductMS.Models;
 using ProductMS.Services.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProductMS.DataAccess.SqlServer
 {
+    [ServiceTypeOf(typeof(IModelTransformer<UserModel, ApplicationUser>))]
     public class UserEntityTransformer : IModelTransformer<UserModel, ApplicationUser>
     {
         public UserModel ToModel(ApplicationUser entity)

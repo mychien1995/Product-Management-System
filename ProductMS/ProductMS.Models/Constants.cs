@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProductMS.Models
+﻿namespace ProductMS.Models
 {
     public class RoleNames
     {

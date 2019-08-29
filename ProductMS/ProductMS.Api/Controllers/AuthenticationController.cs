@@ -1,17 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.JsonWebTokens;
-using Microsoft.IdentityModel.Tokens;
 using ProductMS.Api.Models;
-using ProductMS.DataAccess.SqlServer.Entities;
-using ProductMS.Models.Models.Users;
+using ProductMS.Models;
 using ProductMS.Services.Abstractions.Interfaces;
 using ProductMS.Services.Services.Authentication;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProductMS.Api.Controllers

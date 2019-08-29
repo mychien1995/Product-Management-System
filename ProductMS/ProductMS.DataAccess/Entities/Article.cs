@@ -1,9 +1,6 @@
-﻿using ProductMS.Models.Models.Users;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace ProductMS.DataAccess.SqlServer.Entities
 {
@@ -36,6 +33,6 @@ namespace ProductMS.DataAccess.SqlServer.Entities
 
         public bool IsPublished { get; set; }
         public bool IsDeleted { get; set; }
-        
+
     }
 }

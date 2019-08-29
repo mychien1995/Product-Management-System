@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using ProductMS.DataAccess.SqlServer.Databases;
+using ProductMS.DataAccess.SqlServer.Entities;
 using ProductMS.Framework.Initializations;
 using ProductMS.Models;
-using ProductMS.DataAccess.SqlServer.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace ProductMS.DataAccess.SqlServer
 {

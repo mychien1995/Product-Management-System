@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductMS.Services.Abstract
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductMS.Framework", "ProductMS.Framework\ProductMS.Framework.csproj", "{CC6F41CC-DA35-4888-918B-844ED11413BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductMS.Utils", "ProductMS.Utils\ProductMS.Utils.csproj", "{A0BE137F-22F2-430E-B79D-7AB89823EE33}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductMS.Utils", "ProductMS.Utils\ProductMS.Utils.csproj", "{A0BE137F-22F2-430E-B79D-7AB89823EE33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
