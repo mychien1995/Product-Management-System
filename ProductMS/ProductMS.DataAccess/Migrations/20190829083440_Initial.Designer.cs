@@ -10,7 +10,7 @@ using ProductMS.DataAccess.SqlServer.Databases;
 namespace ProductMS.DataAccess.SqlServer.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20190829082029_Initial")]
+    [Migration("20190829083440_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,7 +81,7 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("ApplicationRoleClaim");
+                    b.ToTable("RoleClaims");
                 });
 
             modelBuilder.Entity("ProductMS.DataAccess.SqlServer.Entities.ApplicationUser", b =>

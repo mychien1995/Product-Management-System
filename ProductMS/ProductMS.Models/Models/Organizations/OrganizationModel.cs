@@ -1,15 +1,12 @@
-﻿using System;
+﻿using ProductMS.Models.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace ProductMS.DataAccess.SqlServer.Entities
+namespace ProductMS.Models
 {
-    public class Organization
+    public class OrganizationModel : IDisableable, IPreservable, IChangeTrackable
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int OrganizationId { get; set; }
         public string OrganizationName { get; set; }
 
@@ -17,15 +14,9 @@ namespace ProductMS.DataAccess.SqlServer.Entities
         public string WebHostNames { get; set; }
 
         public int ProvinceId { get; set; }
-
-        [ForeignKey("ProvinceId")]
-        public virtual Province Province { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-
-        public virtual List<OrganizationAddress> Addresses { get; set; }
-
     }
 }

@@ -115,7 +115,7 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ApplicationRoleClaim",
+                name: "RoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -126,9 +126,9 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ApplicationRoleClaim", x => x.Id);
+                    table.PrimaryKey("PK_RoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ApplicationRoleClaim_Roles_RoleId",
+                        name: "FK_RoleClaims_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "Id",
@@ -378,11 +378,6 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
                 column: "ProvinceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ApplicationRoleClaim_RoleId",
-                table: "ApplicationRoleClaim",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Articles_CreatedBy",
                 table: "Articles",
                 column: "CreatedBy");
@@ -418,6 +413,11 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RoleClaims_RoleId",
+                table: "RoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
                 table: "UserClaims",
                 column: "UserId");
@@ -436,9 +436,6 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ApplicationRoleClaim");
-
-            migrationBuilder.DropTable(
                 name: "Articles");
 
             migrationBuilder.DropTable(
@@ -449,6 +446,9 @@ namespace ProductMS.DataAccess.SqlServer.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "RoleClaims");
 
             migrationBuilder.DropTable(
                 name: "UserClaims");

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 
 namespace ProductMS.DataAccess.SqlServer.Entities
@@ -11,6 +12,10 @@ namespace ProductMS.DataAccess.SqlServer.Entities
         public virtual ICollection<ApplicationUserRole> UserRoles { get; set; }
         public string Fullname { get; set; }
 
+        public bool IsActive { get; set; }
+        public bool IsDeleted { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public virtual List<Article> ArticlesCreated { get; set; }
         public virtual List<Article> ArticlesUpdated { get; set; }
     }
