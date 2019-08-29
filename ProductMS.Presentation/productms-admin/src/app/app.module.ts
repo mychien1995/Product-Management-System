@@ -16,6 +16,7 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import { RegisterComponent } from './components/authentication/register.component';
 import { TokenInterceptor } from './inteceptors/token.interceptor';
 import { AuthenticationInterceptor } from './inteceptors/authentication.interceptor';
+import { LayoutComponent } from './components/layouts/layout.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AuthenticationInterceptor } from './inteceptors/authentication.intercep
     ProductDetailComponent,
     ProductEditFormComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

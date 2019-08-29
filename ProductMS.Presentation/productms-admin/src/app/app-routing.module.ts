@@ -6,16 +6,23 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProductEditFormComponent } from './components/products/editform.component';
 import { LoginComponent } from './components/authentication/login.component';
 import { RegisterComponent } from './components/authentication/register.component';
+import { LayoutComponent } from './components/layouts/layout.component';
 
 const routes: Routes = [
-	{ path : 'products', component: ProductsComponent },
-	{ path : 'products/:id', component: ProductDetailComponent },
-	{ path : 'insertProduct', component: ProductEditFormComponent },
-	{ path : 'updateProduct/:id', component: ProductEditFormComponent },
-	{ path : 'dashboard', component: DashboardComponent },
 	{ path : 'login', component: LoginComponent },
 	{ path : 'register', component: RegisterComponent },
-	{ path : '', redirectTo: '/dashboard', pathMatch: 'full' }
+	{ 
+		path : '',
+		component : LayoutComponent,
+		children : [
+			{ path : '', component: DashboardComponent, pathMatch: 'full' },
+			{ path : 'products', component: ProductsComponent },
+			{ path : 'products/:id', component: ProductDetailComponent },
+			{ path : 'insertProduct', component: ProductEditFormComponent },
+			{ path : 'updateProduct/:id', component: ProductEditFormComponent },
+			{ path : 'dashboard', component: DashboardComponent }
+		]
+	}
 ];
 
 @NgModule({
