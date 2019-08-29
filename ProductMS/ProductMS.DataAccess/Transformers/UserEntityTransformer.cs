@@ -29,7 +29,11 @@ namespace ProductMS.DataAccess.SqlServer
                 LockoutEnd = entity.LockoutEnd,
                 LockoutEnabled = entity.LockoutEnabled,
                 AccessFailedCount = entity.AccessFailedCount,
-                Fullname = entity.Fullname
+                Fullname = entity.Fullname,
+                IsActive = entity.IsActive,
+                CreatedDate = entity.CreatedDate,
+                IsDeleted = entity.IsDeleted,
+                UpdatedDate = entity.UpdatedDate
             };
         }
 
@@ -54,7 +58,11 @@ namespace ProductMS.DataAccess.SqlServer
                 LockoutEnd = model.LockoutEnd,
                 LockoutEnabled = model.LockoutEnabled,
                 AccessFailedCount = model.AccessFailedCount,
-                Fullname = model.Fullname
+                Fullname = model.Fullname,
+                IsActive = model.IsActive,
+                CreatedDate = model.CreatedDate,
+                IsDeleted = model.IsDeleted,
+                UpdatedDate = model.UpdatedDate
             };
         }
     }
