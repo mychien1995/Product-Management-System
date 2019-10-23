@@ -44,6 +44,10 @@ export class AuthenticationService {
   	 );
   }
 
+  isTokenPresent() : boolean{
+    return this._localStorageService.get(this.TokenStorageKey);
+  }
+  
   getToken() : string{
   	return this._localStorageService.get(this.TokenStorageKey);
   }

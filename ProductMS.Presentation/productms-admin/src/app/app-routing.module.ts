@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { Guard } from './inteceptors/guard.canactivate';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductDetailComponent } from './components/products/productdetail.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
 	{ path : 'register', component: RegisterComponent },
 	{ 
 		path : '',
+		canActivate : [Guard],
 		component : LayoutComponent,
 		children : [
 			{ path : '', component: DashboardComponent, pathMatch: 'full' },
